@@ -1,6 +1,10 @@
 #getUrl("2017-01",52.629729,-1.121592)
 #https://data.police.uk/api/crimes-at-location?date=2015-06&lat=52.425906&lng=-1.511772
 
+""" The code consists of several functions that combined together produce and store police crime log obtained from their servers.
+    Required input (Post code, start date, end date) is turned into json then formatted by one of the mentioned functions
+    and stored.
+
 def getCoords(PostCode):
     try:
         url = "http://api.postcodes.io/postcodes/CV15FB" #+ str(PostCode)
