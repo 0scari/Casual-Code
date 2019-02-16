@@ -113,10 +113,9 @@ def thousands(number):
 
 if __name__ == "__main__":
     input = input("Enter a positive integer <= 1,000,000: ")
-    if int(input) >= 1000000:
-        raise Exception()
     num2words(int(input))
-    # try:
-    #
-    # except:
-    #     print(":(")
+    try:
+        if int(input) >= 1000000:
+            raise Exception()
+    except:
+        print(":(")
