@@ -1,5 +1,5 @@
-def num2words(inNumber):
-    """Function to convert numeral input to equivalent text expression in English.
+def num2words(number):
+    """Function that will convert numeral input to equivalent text in English.
 
         1. According to the value of the input decision to apply the appropriate function is taken
         (0-9): Funnction "ones"
@@ -7,107 +7,116 @@ def num2words(inNumber):
         (100-999): Function "Hundreds"
         (1000-9999): function "Thousands"
 
-        """
+    """
 
-    # Lists to identify the equivalent name of the digit
-    txt = ["zero","one","two","three","four", "five","six","seven","eight","nine"]
-    txt1 = ["ten","eleven","twelve","thirteen","fourteen","fifteen","sixteen","seventeen","eighteen","nineteen"]
-    txt2 = ["","","twenty","thirty","forty", "fifty","sixty","seventy","eighty","ninety"]
+    if number < 10:
+        return ones(number)
 
-    def ones(inNumber):
-        """Function to convert single digit input(int) to equivalent text output"""
-        if inNumber == 0:
-            return txt[0]
-        elif inNumber ==1:
-            return txt[1]
-        elif inNumber == 2:
-            return txt[2]
-        elif inNumber == 3:
-            return txt[3]
-        elif inNumber == 4:
-            return txt[4]
-        elif inNumber ==5 :
-            return txt[5]
-        elif inNumber == 6:
-            return txt[6]
-        elif inNumber == 7:
-            return txt[7]
-        elif inNumber == 8:
-            return txt[8]
-        elif inNumber == 9:
-            return txt[9]
+    elif 10 <= number < 100:
+        return tens(number)
 
-    def tens(inNumber):
-        """Function to convert 2 digit input(int) to equivalent text output"""
-
-        def teen(inNumber):
-            """Function to convert input in range 10 - 19"""
-            if inNumber == 0:
-                return txt1[0]  #ten
-            elif inNumber == 1:
-                return txt1[1]
-            elif inNumber == 2:
-                return txt1[2]
-            elif inNumber == 3:
-                return txt1[3]
-            elif inNumber == 4:
-                return txt1[4]
-            elif inNumber == 5:
-                return txt1[5]
-            elif inNumber == 6:
-                return txt1[6]
-            elif inNumber == 7:
-                return txt1[7]
-            elif inNumber == 8:
-                return txt1[8]
-            elif inNumber == 9:
-                return txt1[9]
-
-        # Decision about whether the input belongs to 10 - 19 or 20 - 99
-        if inNumber in range(10, 20):
-            return teen(inNumber % 10)
-
-        else:
-            if inNumber % 10 == 0:
-                return txt2[inNumber//10] # will fetch -ty suffix
-            else:
-                return txt2[inNumber//10] + ' ' + ones(inNumber % 10) # -ty suffix and name of 1-9 number
-
-    def hundreds(inNumber):
-        if inNumber % 100 == 0:
-            return ones(inNumber // 100) + " hundred" # quantity of hundreds
-
-        elif inNumber % 100 in range(1, 10):
-            return ones(inNumber // 100) + " hundred " + ones(inNumber % 100) # hundreds and ones
-
-        else:
-            return ones(inNumber // 100) + " hundred " + tens(inNumber % 100) # hundreds and tens
-
-    def thousands(inNumber):
-         if inNumber % 1000 == 0:
-             return ones(inNumber // 1000) + " thousand" #quantitity of thousands
-         elif inNumber % 1000 in range(1,10):
-             return ones(inNumber // 1000) + " thousand " + ones(inNumber % 1000) #quantitity of thousands and ones
-         elif inNumber % 1000 in range(10, 100):
-             return ones(inNumber // 1000) + " thousand " + tens(inNumber % 1000) # quantitity of thousands and tens
-         else:
-             return ones(inNumber // 1000) + " thousand " + hundreds(inNumber % 1000) # quantitity of thousands and hundreds
-
-    if inNumber < 10:
-        return ones(inNumber)
-
-    elif inNumber >= 10 and inNumber <100:
-        return tens(inNumber)
-
-    elif inNumber >= 100 and inNumber < 1000:
-        return hundreds(inNumber)
+    elif 100 <= number < 1000:
+        return hundreds(number)
 
     else:
-        return thousands(inNumber)
+        return thousands(number)
 
 
+# Lists to identify the equivalent name of the digit
+onesArray = ["zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"]
+teensArray = ["ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen",
+              "nineteen"]
+tensArray = ["", "", "twenty", "thirty", "forty", "fifty", "sixty", "seventy", "eighty", "ninety"]
 
 
+def ones(number):
+    """Function to convert single digit input(int) to equivalent text output"""
+    if number == 0:
+        return onesArray[0]
+    elif number == 1:
+        return onesArray[1]
+    elif number == 2:
+        return onesArray[2]
+    elif number == 3:
+        return onesArray[3]
+    elif number == 4:
+        return onesArray[4]
+    elif number == 5:
+        return onesArray[5]
+    elif number == 6:
+        return onesArray[6]
+    elif number == 7:
+        return onesArray[7]
+    elif number == 8:
+        return onesArray[8]
+    elif number == 9:
+        return onesArray[9]
 
 
+def tens(number):
+    """Function to convert 2 digit input(int) to equivalent text output"""
 
+    def teen(number):
+        """Function to convert input in range 10 - 19"""
+        if number == 0:
+            return teensArray[0]  # ten
+        elif number == 1:
+            return teensArray[1]
+        elif number == 2:
+            return teensArray[2]
+        elif number == 3:
+            return teensArray[3]
+        elif number == 4:
+            return teensArray[4]
+        elif number == 5:
+            return teensArray[5]
+        elif number == 6:
+            return teensArray[6]
+        elif number == 7:
+            return teensArray[7]
+        elif number == 8:
+            return teensArray[8]
+        elif number == 9:
+            return teensArray[9]
+
+    # Decision about whether the input belongs to 10 - 19 or 20 - 99
+    if number in range(10, 20):
+        return teen(number % 10)
+    else:
+        if number % 10 == 0:
+            return tensArray[number // 10]  # will fetch -ty suffix
+        else:
+            return tensArray[number // 10] + ' ' + ones(number % 10)  # -ty suffix and name of 1-9 number
+
+
+def hundreds(number):
+    if number % 100 == 0:
+        return ones(number // 100) + " hundred"  # quantity of hundreds
+    elif number % 100 in range(1, 10):
+        return ones(number // 100) + " hundred " + ones(number % 100)  # hundreds and ones
+    else:
+        return ones(number // 100) + " hundred " + tens(number % 100)  # hundreds and tens
+
+
+def thousands(number):
+    if number % 1000 == 0:
+        return ones(number // 1000) + " thousand"  # quantity of thousands
+    elif number % 1000 in range(1, 10):
+        return ones(number // 1000) + " thousand " + ones(number % 1000)  # quantity of thousands and ones
+    elif number % 1000 in range(11, 10):
+        return ones(number // 1000) + " thousand " + ones(number % 1000)  # quantity of thousands and ones
+    elif number % 1000 in range(10, 100):
+        return ones(number // 1000) + " thousand " + tens(number % 1000)  # quantity of thousands and tens
+    else:
+        return ones(number // 1000) + " thousand " + hundreds(number % 1000)  # quantity of thousands and hundreds
+
+
+if __name__ == "__main__":
+    input = input("Enter a positive integer <= 1,000,000: ")
+    if int(input) >= 1000000:
+        raise Exception()
+    num2words(int(input))
+    # try:
+    #
+    # except:
+    #     print(":(")

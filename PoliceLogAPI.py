@@ -1,9 +1,7 @@
-#getUrl("2017-01",52.629729,-1.121592)
-#https://data.police.uk/api/crimes-at-location?date=2015-06&lat=52.425906&lng=-1.511772
-
 """ The code consists of several functions that combined together produce and store police crime log obtained from their servers.
     Required input (Post code, start date, end date) is turned into json then formatted by one of the mentioned functions
     and stored.
+"""
 
 def getCoords(PostCode):
     try:
@@ -14,7 +12,7 @@ def getCoords(PostCode):
         print("Wrong UK address")
 
 def getTimePeriods (startDate, endDate):
-    """Function to output a list with the range of time periods between startDate and endDate"""
+    """ Function to output a list with the range of time periods between startDate and endDate """
     #startMonth,startYear, endMonth, endYear
 
     months = [None, "01","02","03","04","05","06","07","08","09","10","11","12"]
